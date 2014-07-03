@@ -3,6 +3,9 @@ require "date"
 
 class EventSearchController < ApplicationController
   def index
+    keyword = params[:event_search][:keyword]
+    p keyword
+
     keywords = ["勉強会","AWS"]
 
     ### ATND APIからイベントを取得する.
