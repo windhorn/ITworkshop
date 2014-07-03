@@ -1,0 +1,2 @@
+module EventSearchHelper
+end
