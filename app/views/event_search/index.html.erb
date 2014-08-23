@@ -1,11 +1,19 @@
 <h1>勉強会検索サイト</h1>
 
+<p><%= link_to @next_month, :controller => 'event_search', :action =>'index', :started => @next_month %></p>
+<p><%= @this_month %></p>
+<p><%= link_to @prev_month, :controller => 'event_search', :action =>'index', :started => @prev_month %></p>
+
+
 <%= form_for 'event_search', :url=>{:action => 'index'} do |f| %>
-  <%= f.text_field :keyword %>
+  <%= f.text_field :keyword %><br>
+  <%= f.hidden_field :this_month, :value => @this_month %>
+  AND検索<%= f.radio_button 'condition', 'true', {} %><br>
+  OR検索<%= f.radio_button 'contidion', 'false', {} %><br>
   <%= f.submit "検索" %>
 <% end %>
 
 <% @events.each do |event| %>
-  <p><%= event['title'] %></p>
+  <p><%= link_to event['title'], event['url'] %></p>
   <p><%= event['place'] %></p>
 <% end %>
